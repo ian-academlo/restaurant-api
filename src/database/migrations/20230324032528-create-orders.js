@@ -12,10 +12,16 @@ module.exports = {
       tableId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: "Tables",
+          key: "id",
+        },
+        field: "table_id",
       },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        field: "user_id",
       },
       total: {
         type: Sequelize.FLOAT,
