@@ -6,17 +6,17 @@ const {
   deleteTable,
 } = require("../controllers/tables.controllers");
 const auth = require("../middlewares/auth.midleware");
-const { isAdmin } = require("../middlewares/role.middleware");
+const { isAdmin, hasRoles } = require("../middlewares/role.middleware");
 
 const router = Router();
 // ! USER SELLER ADMIN
 // crear una mesa
-router.post("/tables", auth, isAdmin, createTable); // * ADMIN
+router.post("/tables", auth, hasRoles("ADMIN"), createTable); // * ADMIN
 
 router
   .route("/tables/:id")
-  .get(auth, getTableById) // * USER, SELLER, ADMIN
-  .put(auth, changeAvailability) // * SELLER, ADMIN
-  .delete(auth, deleteTable); // * ADMIN
+  .get(auth, hasRoles("USER", "SELLER", "ADMIN"), getTableById) // * USER, SELLER, ADMIN
+  .put(auth, hasRoles("SELLER", "ADMIN"), changeAvailability) // * SELLER, ADMIN
+  .delete(auth, isAdmin, deleteTable); // * ADMIN
 
 module.exports = router;
