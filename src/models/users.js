@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       firstname: DataTypes.STRING,
       lastname: DataTypes.STRING,
-      role: DataTypes.STRING,
+      role: DataTypes.ENUM("ADMIN", "SELLER", "USER"),
     },
     {
       sequelize,

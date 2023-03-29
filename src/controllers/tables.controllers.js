@@ -2,6 +2,7 @@ const TableServices = require("../services/tables.sservices");
 
 const createTable = async (req, res, next) => {
   try {
+    console.log("ejecuntando controlador");
     const body = req.body;
     const table = await TableServices.add(body);
     res.status(201).json(table);
