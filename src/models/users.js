@@ -19,6 +19,11 @@ module.exports = (sequelize, DataTypes) => {
       role: DataTypes.ENUM("ADMIN", "SELLER", "USER"),
     },
     {
+      hooks: {
+        beforeCreate: (user) => {
+          user.firstname = user.firstname.toUpperCase();
+        },
+      },
       sequelize,
       modelName: "users",
     }

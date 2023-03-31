@@ -9,23 +9,21 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      orderId: {
+      order_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: "orders",
           key: "id",
         },
-        field: "order_id",
       },
-      productId: {
+      product_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: "products",
           key: "id",
         },
-        field: "product_id",
       },
       quantity: {
         type: Sequelize.INTEGER,
